@@ -1,13 +1,10 @@
-import User from "../models/user";
+import User, { IUser } from "../models/user";
 interface ILogin {
     id: string,
     password: string
 }
-interface ISignIn extends ILogin {
-    name: string,
-    email: string,
-}
-const userLogin = async (login: ILogin) => {
+/** 프로덕션에서는 password hashing 필수 */
+export const userLogin = async (login: ILogin) => {
     try {
         const userResult = await User.findAll({
             where: {
@@ -34,7 +31,7 @@ const userLogin = async (login: ILogin) => {
         }
     }
 }
-const userSignIn = async (signin: ISignIn) => {
+const userSignUp = async (signin: IUser) => {
     try {
         await User.create(signin)
     } catch (err) {

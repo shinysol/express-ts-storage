@@ -1,13 +1,15 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database/mysql/config';
 
-interface IUser {
-    id: number;
+export interface IUser {
+    userId: string;
     name: string;
     email: string;
     password: string;
 }
-interface IUserInstance extends Model<IUser & {}, IUser>, IUser {
+interface IUserInstance extends Model<IUser & {
+    id: number;
+}, IUser>, IUser {
 
 }
 const User = sequelize.define<IUserInstance>(
@@ -17,6 +19,10 @@ const User = sequelize.define<IUserInstance>(
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
+        },
+        userId: {
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         name: {
             type: DataTypes.STRING,
