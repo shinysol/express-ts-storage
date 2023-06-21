@@ -1,4 +1,3 @@
-import { Op } from "sequelize";
 import File, { IFile } from "../models/file";
 import SharedFile from "../models/sharedFile";
 export const getMyFiles = async (id: number) => {
